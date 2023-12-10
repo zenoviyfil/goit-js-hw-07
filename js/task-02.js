@@ -31,14 +31,10 @@ const images = [
 
 const galleryList = document.querySelector('.gallery');
 
-const item = document.createElement('li');
-const img = document.createElement('img');
-img.src = images[0].url;
-img.alt = images[0].alt;
+const listItem = images.map(
+  item => `<li class="list__item"><img src="${item.url}" alt="${item.alt}"></li>`
+).join("");
 
-galleryList.appendChild(item);
-item.appendChild(img);
-
+galleryList.innerHTML = listItem;
 
 console.log(galleryList)
-console.log(item)
