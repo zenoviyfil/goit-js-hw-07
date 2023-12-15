@@ -6,36 +6,29 @@ function getRandomHexColor() {
 
 const createBtn = document.querySelector('[data-create]');
 const destroyBtn = document.querySelector('[data-destroy]');
+const boxes = document.getElementById('boxes');
 const controls = document.getElementById('controls');
-const boxes = document.getElementById('boxes')
-
 const input = controls.firstElementChild;
-const amount = input.value;
-let box = '';
+
 let size = 30;
 
-
 function createBoxes(amount) {
-   for (let i = 1; i <= input.value; i++) {
-    box = `<div width=${size}px height=${size}px background-color=${getRandomHexColor()}></div>`;
+   for (let i = 0; i < amount; i++) {
     size += 10;
+    const boxDiv = document.createElement('div');
+    boxDiv.style.cssText = `width: ${size}px; height: ${size}px; background-color: ${getRandomHexColor()}`;
+    boxes.insertAdjacentElement('afterbegin', boxDiv);
    }
-  boxes.insertAdjacentHTML('afterbegin', box);
+   input.value = '';
 }
 
  createBtn.addEventListener('click', () => {
-   if (amount > 0 && amount <= 100) {
-     createBoxes(amount);
+   if (input.value > 0 && input.value <= 100) {
+     createBoxes(input.value);
    }
  });
 
  destroyBtn.addEventListener('click', () => {
   input.value = '';
-  boxes.innerHTML = '';
+  boxes.textContent = '';
  })
-
-
- console.dir(controls)
- console.log(box)
- console.log(createBoxes())
- 
