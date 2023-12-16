@@ -10,14 +10,18 @@ const boxes = document.getElementById('boxes');
 const controls = document.getElementById('controls');
 const input = controls.firstElementChild;
 
-let size = 30;
+function destroyBoxes() {
+  boxes.textContent = '';
+}
 
 function createBoxes(amount) {
+  destroyBoxes();
+  let size = 30;
    for (let i = 0; i < amount; i++) {
-    size += 10;
     const boxDiv = document.createElement('div');
     boxDiv.style.cssText = `width: ${size}px; height: ${size}px; background-color: ${getRandomHexColor()}`;
     boxes.insertAdjacentElement('afterbegin', boxDiv);
+    size += 10;
    }
    input.value = '';
 }
@@ -28,7 +32,4 @@ function createBoxes(amount) {
    }
  });
 
- destroyBtn.addEventListener('click', () => {
-  input.value = '';
-  boxes.textContent = '';
- })
+ destroyBtn.addEventListener('click', destroyBoxes);
