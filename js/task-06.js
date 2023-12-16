@@ -17,12 +17,14 @@ function destroyBoxes() {
 function createBoxes(amount) {
   destroyBoxes();
   let size = 30;
+  const boxDivArr = [];
    for (let i = 0; i < amount; i++) {
     const boxDiv = document.createElement('div');
     boxDiv.style.cssText = `width: ${size}px; height: ${size}px; background-color: ${getRandomHexColor()}`;
-    boxes.insertAdjacentElement('afterbegin', boxDiv);
+    boxDivArr.push(boxDiv)
     size += 10;
    }
+   boxes.append(...boxDivArr);
    input.value = '';
 }
 
